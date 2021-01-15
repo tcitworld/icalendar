@@ -24,6 +24,10 @@ defmodule ICalendar.Util.KV do
     ...> ICalendar.Util.KV.build("foo", date)
     "foo;TZID=America/Chicago:20151224T083000\n"
   """
+  def build("DTSTAMP", nil) do
+    "DTSTAMP:#{Value.to_ics(DateTime.utc_now())}Z\n"
+  end
+
   def build(_, nil) do
     ""
   end
